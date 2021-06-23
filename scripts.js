@@ -1,10 +1,19 @@
 let canvasWidth = 500;
-let canvasHeigh = 500;
+let canvasHeight = 500;
 
 let rowCount = 10;
 let colCount = 10;
 
-let color = "#d80000";
+const defaultColor = "#d8d8d8";
+const defaultRows = 10;
+const defaultColumns = 10; 
+let currentColor = "#d80000";
+
+const canvasHover = (e) =>
+{
+	e.srcElement.style['background-color'] = currentColor;
+	e.srcElement.removeEventListener('mouseover', canvasHover);
+}
 
 function buildGrid(rows, cols)
 {
@@ -20,18 +29,13 @@ function buildGrid(rows, cols)
 		for (let col = 0; col < cols; col++)
 		{
 			li = document.createElement('li');
-			li.textContent = col;
+			li.addEventListener("mouseover", canvasHover);
+			let style = `background-color: ${defaultColor}; height: ${canvasHeight / rows}px; width: ${canvasWidth / cols}px`;
+			li.style.cssText = style;
 			ul.appendChild(li);
 		}
-
 		content.appendChild(ul);
 	}
-
-}
-
-function onHover(e)
-{
-
 }
 
 function colorSelect()

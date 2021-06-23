@@ -20,6 +20,20 @@ h1 {
 	margin-bottom: 10px;
 }
 
+footer {
+	margin-top: 10px;
+}
+
+.content ul {
+	display: flex;
+	flex-direction: row;
+	background-color: var(--black);
+}
+
+.content li {
+	margin: 1px 0px 0px 1px;
+}
+
 .flex-column {
 	display: flex;
 	flex-direction: column;
