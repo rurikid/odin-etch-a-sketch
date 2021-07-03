@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<header>
+		<link rel="stylesheet" href="reset.css">
+		<link rel="stylesheet" href="style.css">
+		<script type="text/javascript" src="scripts.js"></script>
+		<title>Etch-a-Sketch</title>
+	</header>
+	<body class="flex-column justify-center align-center">
+		<h1>Etch-a-Sketch</h1>
+		<div class="controls flex-row violet-border-shadow" id="control-div">
+			<p>
+				<input type="color" value="#D8D8D8" class="color-picker" id="backColorPicker" oninput="colorSelect('background', this.value)">
+				<input type="color" value="#D80000" class="color-picker" id="foreColorPicker" oninput="colorSelect('foreground', this.value)">
+			</p>
+			<p><input type="range" min="1" max="50" value="10" class="density-slider" oninput='sliderInput(this.value)' id="densitySlider" /></p>
+			<p><button action='submit' onClick='clearAll()'>Clear</button></p>
+		</div>
+		<div class="content flex-column" id="content-div">
+			<script language='javascript' type='text/javascript'>buildGrid(currentRows, currentColumns);</script>
+		</div>
+		<footer>
+			<p class="signature">
+				<span class="o-slash">Ø</span><a href="https://www.github.com/rurikid/">Rurikid</a> for <a class="top" href="https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/rock-paper-scissors">The Odin Project</a>
+			</p>
+		</footer>
+	</body>
+</html>
