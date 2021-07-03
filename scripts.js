@@ -1,18 +1,24 @@
-let canvasWidth = 500;
-let canvasHeight = 500;
+const canvasWidth = 500;
+const canvasHeight = 500;
 
-let rowCount = 10;
-let colCount = 10;
+let backgroundColor = "#d8d8d8";
+let currentRows = 10;
+let currentColumns = 10; 
+let foregroundColor = "#d80000";
 
-const defaultColor = "#d8d8d8";
-const defaultRows = 10;
-const defaultColumns = 10; 
-let currentColor = "#d80000";
+var slider = document.getElementById("densitySlider");
 
 const canvasHover = (e) =>
 {
-	e.srcElement.style['background-color'] = currentColor;
+	e.srcElement.style['background-color'] = foregroundColor;
 	e.srcElement.removeEventListener('mouseover', canvasHover);
+}
+
+const sliderInput = (value) => {
+  clearGrid();
+	currentRows = value;
+	currentColumns = value;
+	buildGrid(currentRows, currentColumns);
 }
 
 function buildGrid(rows, cols)
@@ -30,7 +36,7 @@ function buildGrid(rows, cols)
 		{
 			li = document.createElement('li');
 			li.addEventListener("mouseover", canvasHover);
-			let style = `background-color: ${defaultColor}; height: ${canvasHeight / rows}px; width: ${canvasWidth / cols}px`;
+			let style = `background-color: ${backgroundColor}; height: ${canvasHeight / rows}px; width: ${canvasWidth / cols}px`;
 			li.style.cssText = style;
 			ul.appendChild(li);
 		}
@@ -38,12 +44,30 @@ function buildGrid(rows, cols)
 	}
 }
 
-function colorSelect()
+function clearGrid()
 {
+	const content = document.getElementById('content-div');
+	while (content.lastElementChild)
+	{
+		content.removeChild(content.lastElementChild);
+	}
+}
 
+function colorSelect(layer, color)
+{
+	console.log(layer);
+	if (layer == 'foreground')
+	{
+		foregroundColor = color; 
+	}
+	else if (layer == 'background')
+	{
+		backgroundColor = color;
+	}
 }
 
 function clearAll()
 {
-
+	clearGrid();
+	buildGrid(currentRows, currentColumns);
 }
